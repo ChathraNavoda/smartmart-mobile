@@ -20,10 +20,12 @@ class LoginScreen extends StatelessWidget {
 
         //TODO: should complete call login
       },
-      onSignup: (SignupData data) {
+      onSignup: (SignupData data) async {
+        // String? result = await context.userProvider.register(data);
+        // return result; // Return the error message or null based on the outcome
+        //return await
+        context.userProvider.register(data);
         return null;
-
-        //TODO: should complete call register
       },
       onSubmitAnimationCompleted: () {
         if (context.userProvider.getLoginUsr()?.sId != null) {

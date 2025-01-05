@@ -1,5 +1,7 @@
 import 'dart:ui' show PointerDeviceKind;
 
+import 'package:ecomapp/models/user.dart';
+import 'package:ecomapp/screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/cart.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -50,31 +52,13 @@ Future<void> main() async {
   );
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     User? loginUser = context.userProvider.getLoginUsr();
-//     print("Login user: ${loginUser?.sId}");
-//     return GetMaterialApp(
-//       scrollBehavior: const MaterialScrollBehavior().copyWith(
-//         dragDevices: {
-//           PointerDeviceKind.mouse,
-//           PointerDeviceKind.touch,
-//         },
-//       ),
-//       debugShowCheckedModeBanner: false,
-//       home: loginUser?.sId == null ? const LoginScreen() : const HomeScreen(),
-//       theme: AppTheme.lightAppTheme,
-//     );
-//   }
-// }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    User? loginUser = context.userProvider.getLoginUsr();
+    print("Login user: ${loginUser?.sId}");
     return GetMaterialApp(
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
@@ -83,8 +67,26 @@ class MyApp extends StatelessWidget {
         },
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(), // Force navigation to HomeScreen
+      home: loginUser?.sId == null ? const LoginScreen() : const HomeScreen(),
       theme: AppTheme.lightAppTheme,
     );
   }
 }
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       scrollBehavior: const MaterialScrollBehavior().copyWith(
+//         dragDevices: {
+//           PointerDeviceKind.mouse,
+//           PointerDeviceKind.touch,
+//         },
+//       ),
+//       debugShowCheckedModeBanner: false,
+//       home: const HomeScreen(), // Force navigation to HomeScreen
+//       theme: AppTheme.lightAppTheme,
+//     );
+//   }
+// }
