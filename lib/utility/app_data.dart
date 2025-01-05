@@ -1,11 +1,10 @@
+import 'package:ecomapp/utility/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom_navy_bar_item.dart';
 
-
 class AppData {
   const AppData._();
-
 
   static List<Color> randomColors = [
     const Color(0xFFFCE4EC),
@@ -17,7 +16,6 @@ class AppData {
     const Color(0xFFFFF8E1),
     const Color(0xFFECEFF1),
   ];
-
 
   static List<Color> randomPosterBgColors = [
     const Color(0xFFE70D56),
@@ -34,23 +32,22 @@ class AppData {
     const BottomNavyBarItem(
       "Home",
       Icon(Icons.home),
-      Color(0xFFEC6813),
+      AppColor.aquaBreeze,
     ),
     const BottomNavyBarItem(
       "Favorite",
       Icon(Icons.favorite),
-      Color(0xFFEC6813),
+      AppColor.aquaBreeze,
     ),
     const BottomNavyBarItem(
       "Cart",
       Icon(Icons.shopping_cart),
-      Color(0xFFEC6813),
+      AppColor.aquaBreeze,
     ),
     const BottomNavyBarItem(
       "Profile",
       Icon(Icons.person),
-      Color(0xFFEC6813),
+      AppColor.aquaBreeze,
     ),
   ];
-
 }

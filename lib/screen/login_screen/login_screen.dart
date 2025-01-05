@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
       onRecoverPassword: (_) => null,
       hideForgotPasswordButton: true,
       theme: LoginTheme(
-          primaryColor: AppColor.darkGrey,
+          primaryColor: AppColor.black,
           accentColor: AppColor.aquaBreeze,
           buttonTheme: const LoginButtonTheme(
             backgroundColor: AppColor.aquaBreeze,
