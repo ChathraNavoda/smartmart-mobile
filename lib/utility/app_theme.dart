@@ -1,3 +1,4 @@
+import 'package:ecomapp/utility/app_color.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -7,14 +8,14 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(12),
-        backgroundColor: const Color(0xFFf16b26),
+        backgroundColor: AppColor.skyMist,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(foregroundColor: Colors.deepOrange),
+      style: TextButton.styleFrom(foregroundColor: AppColor.aquaBreeze),
     ),
     iconTheme: const IconThemeData(color: Color(0xFFA6A3A0)),
     textTheme: const TextTheme(

@@ -26,7 +26,7 @@ class NavigationTile extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                  color: AppColor.darkOrange,
+                  color: AppColor.aquaBreeze,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(icon, size: 30, color: Colors.white),
@@ -35,7 +35,10 @@ class NavigationTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black87),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87),
                 ),
               ),
               const Icon(Icons.arrow_forward_ios, color: Colors.black87),

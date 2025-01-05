@@ -1,3 +1,4 @@
+import 'package:ecomapp/utility/app_color.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalList<T> extends StatelessWidget {
@@ -6,7 +7,12 @@ class HorizontalList<T> extends StatelessWidget {
   final String Function(T) itemToString;
   final void Function(T) onSelect;
 
-  const HorizontalList({super.key, this.items, required this.itemToString, required this.selected, required this.onSelect});
+  const HorizontalList(
+      {super.key,
+      this.items,
+      required this.itemToString,
+      required this.selected,
+      required this.onSelect});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class HorizontalList<T> extends StatelessWidget {
                   onSelect(item);
                 },
                 backgroundColor: Colors.grey[200],
-                selectedColor: Colors.orangeAccent,
+                selectedColor: AppColor.aquaBreeze,
                 showCheckmark: false,
               ),
             );
@@ -38,6 +44,3 @@ class HorizontalList<T> extends StatelessWidget {
     );
   }
 }
-
-
-

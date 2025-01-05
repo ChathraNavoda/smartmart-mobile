@@ -16,14 +16,10 @@ class LoginScreen extends StatelessWidget {
       loginAfterSignUp: false,
       logo: const AssetImage('assets/images/logo.png'),
       onLogin: (loginData) {
+        context.userProvider.login(loginData);
         return null;
-
-        //TODO: should complete call login
       },
       onSignup: (SignupData data) async {
-        // String? result = await context.userProvider.register(data);
-        // return result; // Return the error message or null based on the outcome
-        //return await
         context.userProvider.register(data);
         return null;
       },
@@ -46,9 +42,9 @@ class LoginScreen extends StatelessWidget {
       hideForgotPasswordButton: true,
       theme: LoginTheme(
           primaryColor: AppColor.darkGrey,
-          accentColor: AppColor.darkOrange,
+          accentColor: AppColor.aquaBreeze,
           buttonTheme: const LoginButtonTheme(
-            backgroundColor: AppColor.darkOrange,
+            backgroundColor: AppColor.aquaBreeze,
           ),
           cardTheme: const CardTheme(
               color: Colors.white, surfaceTintColor: Colors.white),

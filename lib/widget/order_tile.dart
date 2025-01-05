@@ -37,7 +37,7 @@ class OrderTile extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppColor.darkOrange,
+                  color: AppColor.aquaBreeze,
                 ),
               ),
               const SizedBox(height: 8),
@@ -86,7 +86,7 @@ class OrderTile extends StatelessWidget {
       case 'pending':
         return Colors.grey;
       case 'processing':
-        return Colors.orange;
+        return AppColor.aquaBreeze;
       case 'shipped':
         return Colors.blue;
       case 'delivered':

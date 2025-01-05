@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../../models/brand.dart';
 import '../../models/category.dart';
 import '../../models/sub_category.dart';
-import 'provider/product_by_category_provider.dart';
 import '../../utility/app_color.dart';
 import '../../widget/custom_dropdown.dart';
-import '../../widget/multi_select_drop_down.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../widget/horizondal_list.dart';
+import '../../widget/multi_select_drop_down.dart';
 import '../../widget/product_grid_view.dart';
+import 'provider/product_by_category_provider.dart';
 
 class ProductByCategoryScreen extends StatelessWidget {
   final Category selectedCategory;
@@ -29,12 +30,16 @@ class ProductByCategoryScreen extends StatelessWidget {
               snap: true,
               title: Text(
                 "${selectedCategory.name}",
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColor.darkOrange),
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: AppColor.aquaBreeze),
               ),
               expandedHeight: 190.0,
               flexibleSpace: LayoutBuilder(
                 builder: (context, constraints) {
-                  var top = constraints.biggest.height - MediaQuery.of(context).padding.top;
+                  var top = constraints.biggest.height -
+                      MediaQuery.of(context).padding.top;
                   return Stack(
                     children: [
                       Positioned(
@@ -46,11 +51,14 @@ class ProductByCategoryScreen extends StatelessWidget {
                             Consumer<ProductByCategoryProvider>(
                               builder: (context, proByCatProvider, child) {
                                 return Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10.0),
                                   child: HorizontalList(
                                     items: proByCatProvider.subCategories,
-                                    itemToString: (SubCategory? val) => val?.name ?? '',
-                                    selected: proByCatProvider.mySelectedSubCategory,
+                                    itemToString: (SubCategory? val) =>
+                                        val?.name ?? '',
+                                    selected:
+                                        proByCatProvider.mySelectedSubCategory,
                                     onSelect: (val) {
                                       if (val != null) {
                                         //TODO: should complete call filterProductBySubCategory
@@ -78,7 +86,8 @@ class ProductByCategoryScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Consumer<ProductByCategoryProvider>(
-                                    builder: (context, proByCatProvider, child) {
+                                    builder:
+                                        (context, proByCatProvider, child) {
                                       return MultiSelectDropDown<Brand>(
                                         hintText: 'Filter By Brands',
                                         items: proByCatProvider.brands,
@@ -88,7 +97,8 @@ class ProductByCategoryScreen extends StatelessWidget {
                                           proByCatProvider.updateUI();
                                         },
                                         displayItem: (val) => val.name ?? '',
-                                        selectedItems: proByCatProvider.selectedBrands,
+                                        selectedItems:
+                                            proByCatProvider.selectedBrands,
                                       );
                                     },
                                   ),

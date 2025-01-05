@@ -18,7 +18,39 @@ class UserProvider extends ChangeNotifier {
 
   UserProvider(this._dataProvider);
 
-  //TODO: should complete login
+  Future<String?> login(LoginData data) async {
+    try {
+      Map<String, dynamic> loginData = {
+        'name': data.name.toLowerCase(),
+        'password': data.password
+      };
+      final response = await service.addItem(
+          endpointUrl: 'users/login', itemData: loginData);
+      if (response.isOk) {
+        final ApiResponse<User> apiResponse = ApiResponse<User>.fromJson(
+            response.body,
+            (json) => User.fromJson(json as Map<String, dynamic>));
+        if (apiResponse.success == true) {
+          User? user = apiResponse.data;
+          saveLoginInfo(user);
+          SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+          return null;
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to login: ${apiResponse.message} ');
+          return 'Failed to login: ${apiResponse.message} ';
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error ${response.body?['message'] ?? response.statusText}');
+        return 'Error ${response.body?['message'] ?? response.statusText}';
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred : $e!');
+      return 'An error occurred : $e!';
+    }
+  }
 
   Future<String?> register(SignupData data) async {
     try {
