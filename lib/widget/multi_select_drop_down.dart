@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ecomapp/utility/app_color.dart';
 import 'package:flutter/material.dart';
-
-import '../utility/app_color.dart';
 
 class MultiSelectDropDown<T> extends StatelessWidget {
   final String? hintText;
@@ -99,8 +98,9 @@ class MultiSelectDropDown<T> extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16, right: 8),
               height: 50,
               decoration: BoxDecoration(
-                color: AppColor.aquaBreeze,
-                border: Border.all(color: Colors.grey),
+                border: Border.all(
+                  color: AppColor.aquaBreeze,
+                ),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),

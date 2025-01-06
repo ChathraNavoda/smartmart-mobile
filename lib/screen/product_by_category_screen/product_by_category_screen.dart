@@ -1,3 +1,4 @@
+import 'package:ecomapp/utility/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,8 @@ class ProductByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration.zero, () {
-      //TODO: should complete call filterInitialProductAndSubCategory
+      context.proByCProvider
+          .filterInitialProductAndSubCategory(selectedCategory);
     });
     return Scaffold(
       body: SafeArea(
@@ -61,7 +63,8 @@ class ProductByCategoryScreen extends StatelessWidget {
                                         proByCatProvider.mySelectedSubCategory,
                                     onSelect: (val) {
                                       if (val != null) {
-                                        //TODO: should complete call filterProductBySubCategory
+                                        context.proByCProvider
+                                            .filterProductBySubCategory(val);
                                       }
                                     },
                                   ),

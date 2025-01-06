@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ecomapp/utility/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdown<T> extends StatelessWidget {
@@ -17,7 +18,8 @@ class CustomDropdown<T> extends StatelessWidget {
     required this.onChanged,
     this.validator,
     this.hintText = 'Select an option',
-    required this.displayItem, this.bgColor,
+    required this.displayItem,
+    this.bgColor,
   });
 
   @override
@@ -40,18 +42,20 @@ class CustomDropdown<T> extends StatelessWidget {
                 child: Container(
                   height: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(displayItem(value), style: const TextStyle(fontSize: 14)),
+                  child: Text(displayItem(value),
+                      style: const TextStyle(fontSize: 14)),
                 ),
               );
             }).toList(),
             value: initialValue,
             onChanged: onChanged,
             buttonStyleData: ButtonStyleData(
-              padding: EdgeInsets.only(left: 16, right: 8),
+              padding: const EdgeInsets.only(left: 16, right: 8),
               height: 50,
               decoration: BoxDecoration(
-                color: bgColor ?? Colors.grey[200],
-                border: Border.all(color: Colors.grey),
+                border: Border.all(
+                  color: AppColor.aquaBreeze,
+                ),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
