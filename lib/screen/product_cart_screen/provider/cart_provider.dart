@@ -34,15 +34,27 @@ class CartProvider extends ChangeNotifier {
 
   CartProvider(this._userProvider);
 
-  //TODO: should complete updateCart
+  void updateCart(CartModel cartItem, int quantity) {
+    quantity = cartItem.quantity + quantity;
+    flutterCart.updateQuantity(cartItem.productId, cartItem.variants, quantity);
+    notifyListeners();
+  }
 
-  //TODO: should complete getCartSubTotal
+  double getCartSubTotal() {
+    return flutterCart.subtotal;
+  }
 
   //TODO: should complete getGrandTotal
 
-  //TODO: should complete getCartItems
+  getCartItems() {
+    myCartItems = flutterCart.cartItemsList;
+    notifyListeners();
+  }
 
-  //TODO: should complete clearCartItems
+  clearCartItems() {
+    notifyListeners();
+    flutterCart.clearCart();
+  }
 
   //TODO: should complete checkCoupon
 

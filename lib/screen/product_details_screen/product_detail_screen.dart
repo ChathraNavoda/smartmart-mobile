@@ -130,8 +130,10 @@ class ProductDetailScreen extends StatelessWidget {
                                   context.proDetailProvider.addToCart(product);
                                 }
                               : null,
-                          child: const Text("Add to cart",
-                              style: TextStyle(color: Colors.white)),
+                          child: const Text(
+                            "Add to cart",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       )
                     ],

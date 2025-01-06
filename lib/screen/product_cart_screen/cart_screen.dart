@@ -15,7 +15,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration.zero, () {
-      //TODO: should complete call getCartItems
+      context.cartProvider.getCartItems();
     });
     return Scaffold(
       appBar: AppBar(
@@ -45,22 +45,21 @@ class CartScreen extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Total",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
                     ),
                     AnimatedSwitcherWrapper(
                       child: Text(
-                        "\$${100}", //TODO: should complete amount to CartSubTotal
-                        // key: ValueKey<double>(cartProvider.getCartSubTotal()),
-                        style: TextStyle(
+                        "LKR ${context.cartProvider.getCartSubTotal()}",
+                        style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFFEC6813),
+                          color: AppColor.aquaBreeze,
                         ),
                       ),
                     )
