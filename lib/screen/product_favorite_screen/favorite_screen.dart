@@ -1,3 +1,4 @@
+import 'package:ecomapp/utility/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +12,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration.zero, () {
-      //TODO: should complete call loadFavoriteItems
+      context.favoriteProvider.loadFavoriteItems();
     });
     return Scaffold(
       appBar: AppBar(
