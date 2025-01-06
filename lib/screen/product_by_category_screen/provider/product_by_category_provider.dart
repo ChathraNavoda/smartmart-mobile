@@ -46,15 +46,28 @@ class ProductByCategoryProvider extends ChangeNotifier {
               (element) => element.proSubCategoryId?.name == subCategory.name)
           .toList();
       brands = _dataProvider.brands
-          .where((element) => element.subcategoryId?.name == subCategory.sId)
+          .where((element) => element.subcategoryId?.sId == subCategory.sId)
           .toList();
     }
     notifyListeners();
   }
 
-  //TODO: should complete filterProductBySubCategory
-
-  //TODO: should complete filterProductByBrand
+  void filterProductByBrand() {
+    if (selectedBrands.isEmpty) {
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedSubCategory?.name)
+          .toList();
+    } else {
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedSubCategory?.name &&
+              selectedBrands
+                  .any((brand) => product.proBrandId?.sId == brand.sId))
+          .toList();
+    }
+    notifyListeners();
+  }
 
   //TODO: should complete sortProducts
 
