@@ -1,3 +1,4 @@
+import 'package:ecomapp/models/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:get/get.dart';
@@ -44,7 +45,9 @@ class CartProvider extends ChangeNotifier {
     return flutterCart.subtotal;
   }
 
-  //TODO: should complete getGrandTotal
+  getGrandTotal() {
+    return getCartSubTotal() - couponCodeDiscount;
+  }
 
   getCartItems() {
     myCartItems = flutterCart.cartItemsList;
@@ -56,9 +59,65 @@ class CartProvider extends ChangeNotifier {
     flutterCart.clearCart();
   }
 
-  //TODO: should complete checkCoupon
+  checkCoupon() async {
+    try {
+      if (couponController.text.isEmpty) {
+        SnackBarHelper.showErrorSnackBar('Enter a coupon code');
+        return;
+      }
+      List<String> productIds =
+          myCartItems.map((cartItem) => cartItem.productId).toList();
 
-  //TODO: should complete getCouponDiscountAmount
+      Map<String, dynamic> couponData = {
+        'couponCode': couponController.text,
+        'purchaseAmount': getCartSubTotal(),
+        'productIds': productIds
+      };
+
+      final response = await service.addItem(
+          endpointUrl: 'couponCodes/check-coupon', itemData: couponData);
+
+      if (response.isOk) {
+        final ApiResponse<Coupon> apiResponse = ApiResponse<Coupon>.fromJson(
+            response.body,
+            (json) => Coupon.fromJson(json as Map<String, dynamic>));
+
+        if (apiResponse.success == true) {
+          Coupon? coupon = apiResponse.data;
+          if (coupon != null) {
+            couponApplied = coupon;
+            couponCodeDiscount = getCouponDiscountAmount(coupon);
+          }
+          SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+              'Failed to validate coupon: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            'Error: ${response.body?['message'] ?? response.statusText}');
+      }
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
+
+  getCouponDiscountAmount(Coupon coupon) {
+    double discountAmount = 0;
+    String discountType = coupon.discountType ?? 'fixed';
+    if (discountType == 'fixed') {
+      discountAmount = coupon.discountAmount ?? 0;
+      return discountAmount;
+    } else {
+      double discountPercentage = coupon.discountAmount ?? 0;
+      double amountAfterDiscountPercentage =
+          getCartSubTotal() * (discountPercentage / 100);
+      return amountAfterDiscountPercentage;
+    }
+  }
 
   //TODO: should complete submitOrder
 
