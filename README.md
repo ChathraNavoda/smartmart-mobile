@@ -1,16 +1,2 @@
-# ecomapp
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Key Features: A Flutter-based e-commerce platform featuring separate user and admin applications. The client app allows users to browse products, manage favorites, add items to the cart, place orders, and track deliveries in real-time, with integrated payment gateway and notifications. The admin panel enables efficient store management, allowing admins to create and manage categories, subcategories, variants, products, and handle order processing through a full CRUD interface. 
+Technologies: Flutter (User & Admin Apps), Node.js (Backend), MongoDB (Database), One Signal (Push notifications), Stripe(Payment Gateway)
